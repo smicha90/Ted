@@ -142,4 +142,6 @@ public interface Constants {
 
 	/** an error result */
 	public static final int RESULT_ERROR = 1;
+	
+	public static final String DEFAULT_ENCODING = "UTF-8";
 }

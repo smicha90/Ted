@@ -155,6 +155,8 @@ public class TextFileUtils implements Constants {
 		} catch (IOException e) {
 			Log.w(TAG, "Can't read backup file ", e);
 			return null;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 		return text.toString();
 	}
@@ -166,30 +168,41 @@ public class TextFileUtils implements Constants {
 	public static void clearInternal(Context context) {
 		writeInternal(context, "");
 	}
-	
+
 	/**
 	 * Detect charset
-	 * @see    https://code.google.com/p/juniversalchardet/
-	 * @param  fileName
-	 *             the absolute path of the file to open
+	 * 
+	 * @see https://code.google.com/p/juniversalchardet/
+	 * @param fileName
+	 *            the absolute path of the file to open
 	 * @return charset name
-	 *         
+	 * 
 	 * */
 	public static String detectCharSet(String fileName) throws IOException {
-	    byte[] buf = new byte[4096];
-	    FileInputStream fis = new FileInputStream(fileName);
+		byte[] buf = new byte[4096];
+		FileInputStream fis = new FileInputStream(fileName);
 
-	    UniversalDetector detector = new UniversalDetector(null);
+		UniversalDetector detector = new UniversalDetector(null);
 
-	    int nread;
-	    while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
-	      detector.handleData(buf, 0, nread);
-	    }
-	    detector.dataEnd();
+		int nread;
+		while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
+			detector.handleData(buf, 0, nread);
+		}
+		detector.dataEnd();
 
-	    String encoding = detector.getDetectedCharset();
+		String encoding = detector.getDetectedCharset();
 
-	    detector.reset();
-	    return encoding;
-	  }
+		detector.reset();
+		if (encoding != null) {
+			if (BuildConfig.DEBUG) {
+				Log.d(TAG, "Detected encoding = " + encoding);
+			}
+			return encoding;
+		} else {
+			if (BuildConfig.DEBUG) {
+				Log.d(TAG, "No encoding detected");
+			}
+			return DEFAULT_ENCODING;
+		}
+	}
 }
