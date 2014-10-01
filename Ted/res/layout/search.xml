@@ -49,6 +49,7 @@
         android:layout_alignLeft="@+id/textSearch"
         android:layout_below="@+id/buttonSearchClose"
         android:layout_toLeftOf="@+id/buttonReplace"
+        android:drawableLeft="@drawable/ic_replace"
         android:drawablePadding="8dp"
         android:hint="@string/ui_hint_replace"
         android:inputType="text" />
