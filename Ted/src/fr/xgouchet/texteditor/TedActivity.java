@@ -246,6 +246,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 				R.drawable.ic_menu_file_new);
 		addMenuItem(menu, MENU_ID_OPEN, R.string.menu_open,
 				R.drawable.ic_menu_file_open);
+		addMenuItem(menu, MENU_ID_WORD_COUNT, R.string.menu_word_count,
+				R.drawable.ic_menu_word_count);
 
 		if (!mReadOnly)
 			addMenuItem(menu, MENU_ID_SAVE, R.string.menu_save,

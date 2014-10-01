@@ -24,7 +24,7 @@ public interface Constants {
 	public static final int MENU_ID_NEW = 0;
 	/** Saves the file ( = {@value} ) */
 	public static final int MENU_ID_SAVE = 1;
-	/** Savesas a new file ( = {@value} ) */
+	/** Save as a new file ( = {@value} ) */
 	public static final int MENU_ID_SAVE_AS = 2;
 	/** open an existing file */
 	public static final int MENU_ID_OPEN = 3;
@@ -40,6 +40,8 @@ public interface Constants {
 	public static final int MENU_ID_UNDO = 8;
 	/** redo last change ( = {@value} ) */
 	public static final int MENU_ID_REDO = 9;
+	/** Counts the words of the file */
+	public static final int MENU_ID_WORD_COUNT = 10;
 	/** Quit the app ( = {@value} ) */
 	public static final int MENU_ID_QUIT = 666;
 
