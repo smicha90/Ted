@@ -76,6 +76,10 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		findViewById(R.id.buttonSearchClose).setOnClickListener(this);
 		findViewById(R.id.buttonSearchNext).setOnClickListener(this);
 		findViewById(R.id.buttonSearchPrev).setOnClickListener(this);
+
+		// replace
+		mReplaceInput = (EditText) findViewById(R.id.textReplace);
+		findViewById(R.id.buttonReplace).setOnClickListener(this);
 	}
 
 	/**
@@ -384,6 +388,9 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 			break;
 		case R.id.buttonSearchPrev:
 			searchPrevious();
+			break;
+		case R.id.buttonReplace:
+			replace();
 			break;
 		}
 	}
@@ -944,6 +951,25 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	}
 
 	/**
+	 * Uses the user input in the search bar and the replace bar to replace the
+	 * word in the search bar with the word in the replace bar.
+	 */
+
+	protected void replace() {
+		String text = mEditor.getText().toString();
+		String search = mSearchInput.getText().toString();
+		String replace = mReplaceInput.getText().toString();
+		if (search.length() == 0) {
+			Crouton.showText(this, R.string.toast_replace_no_input, Style.INFO);
+			return;
+		} else {
+			text = text.replace(search, replace);
+		}
+
+		mEditor.setText(text);
+	}
+
+	/**
 	 * Opens the about activity
 	 */
 	protected void aboutActivity() {
@@ -1020,6 +1046,9 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	protected View mSearchLayout;
 	/** the search input */
 	protected EditText mSearchInput;
+
+	/** the replace input */
+	protected EditText mReplaceInput;
 
 	/** Undo watcher */
 	protected TextChangeWatcher mWatcher;
