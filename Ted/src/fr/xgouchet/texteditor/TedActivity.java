@@ -33,6 +33,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.Toast;
 import de.neofonie.mobile.app.android.widget.crouton.Crouton;
 import de.neofonie.mobile.app.android.widget.crouton.Style;
 import fr.xgouchet.texteditor.common.Constants;
@@ -319,6 +320,9 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 			if (!undo()) {
 				Crouton.showText(this, R.string.toast_warn_no_undo, Style.INFO);
 			}
+			return true;
+		case MENU_ID_WORD_COUNT:
+			word_count();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -670,6 +674,33 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		mInUndo = false;
 
 		return didUndo;
+	}
+	
+	/**
+	 * Show a toast containing the number of words in the file
+	 */
+	protected void word_count(){
+		int words;
+		String toast_text;
+		String text = mEditor.getText().toString();
+		if (text.length() == 0) {
+			words = text.length();
+		} else {
+			words = text.split("\\P{L}+").length;
+		}
+
+		Log.d(TAG, "Word: " + words + " Text: " + text);
+		Context context = getApplicationContext();
+		if (words == 1) {
+			toast_text = String.valueOf(words) + " word";
+		} else {
+			toast_text = String.valueOf(words) + " words";
+		}
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, toast_text, duration);
+		toast.show();
+
 	}
 
 	/**
