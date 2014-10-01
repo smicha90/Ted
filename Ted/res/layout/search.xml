@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
@@ -12,28 +12,63 @@
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_delete" />
 
-    <EditText
-        android:id="@+id/textSearch"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/ic_search"
-        android:drawablePadding="8dp"
-        android:hint="@string/ui_hint_search"
-        android:inputType="text" />
+    <ImageButton
+        android:id="@+id/buttonSearchNext"
+        style="@style/ButtonSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@android:drawable/ic_media_next" />
 
     <ImageButton
         android:id="@+id/buttonSearchPrev"
         style="@style/ButtonSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/buttonSearchNext"
         android:src="@android:drawable/ic_media_previous" />
 
-    <ImageButton
-        android:id="@+id/buttonSearchNext"
-        style="@style/ButtonSmall"
+    <EditText
+        android:id="@+id/textSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_media_next" />
+        android:layout_alignBottom="@+id/buttonSearchPrev"
+        android:layout_toLeftOf="@+id/buttonSearchPrev"
+        android:layout_toRightOf="@+id/buttonSearchClose"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="8dp"
+        android:hint="@string/ui_hint_search"
+        android:inputType="text" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/textReplace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textSearch"
+        android:layout_below="@+id/buttonSearchClose"
+        android:layout_toLeftOf="@+id/buttonReplace"
+        android:drawablePadding="8dp"
+        android:hint="@string/ui_hint_replace"
+        android:inputType="text" />
+
+    <!-- <Button -->
+    <!-- android:id="@+id/buttonReplaceAll" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_alignBaseline="@+id/buttonReplace" -->
+    <!-- android:layout_alignBottom="@+id/buttonReplace" -->
+    <!-- android:layout_alignParentRight="true" -->
+    <!-- android:text="@string/buttonReplaceAll" /> -->
+
+    <Button
+        android:id="@+id/buttonReplace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textReplace"
+        android:layout_alignBottom="@+id/textReplace"
+        android:layout_alignParentRight="true"
+        android:text="@string/buttonReplace" />
+
+</RelativeLayout>
