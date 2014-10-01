@@ -201,7 +201,11 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		case REQUEST_SAVE_AS:
 			if (BuildConfig.DEBUG)
 				Log.d(TAG, "Save as : " + extras.getString("path"));
-			doSaveFile(extras.getString("path"));
+			if (extras.getString("path").contains(".")) {
+				doSaveFile(extras.getString("path"));
+			} else {
+				doSaveFile(extras.getString("path") + ".txt");
+			}
 			break;
 		case REQUEST_OPEN:
 			if (BuildConfig.DEBUG)
